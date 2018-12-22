@@ -1,0 +1,18 @@
+version: '3'
+services:
+  moxy_admin_vue:
+    restart: always
+    image: registry.cn-hangzhou.aliyuncs.com/moxycoding/moxy.admin.vue:latest
+    container_name: moxy_admin_vue
+    labels:
+      - 'traefik.backend=moxy_admin_vue'
+      - 'traefik.frontend.rule=Host:admin.1xy2.com'
+      - 'traefik.enable=true'
+      - 'traefik.protocol=http'
+      - 'traefik.port=80'
+    networks:
+      - webgateway
+networks:
+  webgateway:
+    external:
+      name: moxy_gateway

@@ -1,0 +1,18 @@
+version: '3'
+services:
+  moxy_web_nuxt:
+    restart: always
+    image: registry.cn-hangzhou.aliyuncs.com/moxycoding/moxy.web.nuxt:latest
+    container_name: moxy_web_nuxt
+    labels:
+      - 'traefik.backend=moxy_web_nuxt'
+      - 'traefik.frontend.rule=Host:www.1xy2.com'
+      - 'traefik.enable=true'
+      - 'traefik.protocol=http'
+      - 'traefik.port=80'
+    networks:
+      - webgateway
+networks:
+  webgateway:
+    external:
+      name: moxy_gateway

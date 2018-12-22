@@ -1,0 +1,22 @@
+version: '3.0'
+
+services:
+  moxy_api_dotnet:
+    restart: always
+    image: registry.cn-hangzhou.aliyuncs.com/moxycoding/moxy.api.dotnet:latest
+    container_name: moxy_api_dotnet
+    labels:
+      - 'traefik.backend=moxy_api_dotnet'
+      - 'traefik.frontend.rule=Host:api.1xy2.com'
+      - 'traefik.enable=true'
+      - 'traefik.protocol=http'
+      - 'traefik.port=80'
+    volumes:
+      - ./appsettings.Production.json:/app/appsettings.Production.json
+      - ./logs/:/app/logs/
+    networks:
+      - webgateway
+networks:
+  webgateway:
+    external:
+      name: moxy_gateway
