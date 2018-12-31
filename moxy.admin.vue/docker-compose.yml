@@ -6,7 +6,7 @@ services:
     container_name: moxy_admin_vue
     labels:
       - 'traefik.backend=moxy_admin_vue'
-      - 'traefik.frontend.rule=Host:admin.1xy2.com'
+      - 'traefik.frontend.rule=Host:admin.moxycoding.com'
       - 'traefik.enable=true'
       - 'traefik.protocol=http'
       - 'traefik.port=80'
