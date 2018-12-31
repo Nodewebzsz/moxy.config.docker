@@ -1,0 +1,27 @@
+version: '3'
+services:
+  moxy_jenkins:
+    restart: always
+    image: jenkins/jenkins:lts
+    container_name: moxy_jenkins
+    networks:
+      - webgateway
+    ports:
+      - '50000:50000'
+    labels:
+      - 'traefik.backend=moxy_jenkins'
+      - 'traefik.frontend.rule=Host:jenkins.moxycoding.com'
+      - 'traefik.enable=true'
+      - 'traefik.protocol=http'
+      - 'traefik.port=8080'
+    volumes:
+      # sudo chown -R 1000 ./data
+      - ./data/:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /usr/bin/docker:/usr/bin/docker
+      - /usr/lib/x86_64-linux-gnu/libltdl.so.7:/usr/lib/x86_64-linux-gnu/libltdl.so.7
+
+networks:
+  webgateway:
+    external:
+      name: moxy_gateway
