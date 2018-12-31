@@ -74,7 +74,7 @@ entrypoint = "webentry"
 # Enable Docker configuration backend
 [docker]
 endpoint = "unix:///var/run/docker.sock"
-domain = "1xy2.com"
+domain = "moxycoding.com"
 watch = true
 exposedByDefault = false
 usebindportip = true
