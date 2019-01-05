@@ -10,6 +10,12 @@ services:
       - '80:80'
       - '443:443'
       - '8090:8090'
+    labels:
+      - 'traefik.backend=qc_traefik'
+      - 'traefik.frontend.rule=Host:traefik.moxycoding.com'
+      - 'traefik.enable=true'
+      - 'traefik.protocol=http'
+      - 'traefik.port=8090'
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./traefik.toml:/traefik.toml
